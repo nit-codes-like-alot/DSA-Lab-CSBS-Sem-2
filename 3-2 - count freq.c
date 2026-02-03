@@ -1,43 +1,31 @@
-#include <stdio.h>
-int main() {
-    int n;
-    printf("Enter number of elements: ");
-    scanf("%d", &n);
+#include<stdio.h>
+struct Student {
+    char name[50];
+    int roll;
+    char address[100];
+};
+void main(){
+    struct Student s;//creating a structure variable 
+    struct Student *ptr;//pointer to structure
     
-    int arr[n], freq[n];
+    ptr=&s;
     
-    // Taking input of array elements
-    printf("Enter %d elements:\n", n);
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-        freq[i] = 0;   // initializing frequency array
-    }
-    // Counting frequency of each element
-    for (int i = 0; i < n; i++) {
-        if (freq[i] != -1) {
-            int count = 1;
-            for (int j = i + 1; j < n; j++) {
-                if (arr[i] == arr[j]) {
-                    count++;
-                    freq[j] = -1;  // mark as counted
-                }
-            }
-            freq[i] = count;
-        }
-    }
-    // Printing frequency of each element
-    printf("\nElement Frequency:\n");
-    for (int i = 0; i < n; i++) {
-        if (freq[i] != -1) {
-            printf("%d -> %d\n", arr[i], freq[i]);
-        }
-    }
-    // Printing unique elements
-    printf("\nUnique elements:\n");
-    for (int i = 0; i < n; i++) {
-        if (freq[i] == 1) {
-            printf("%d ", arr[i]);
-        }
-    }
+    //taking input
+    printf("Enter student name: ");
+    fgets(ptr->name,sizeof(ptr->name),stdin);
+    
+    printf("Enter roll number: ");
+    scanf("%d", &ptr->roll);
+    getchar();//consume the newline after scanf
+    
+    printf("Enter address: ");
+    fgets(ptr->address,sizeof(ptr->address),stdin);
+    
+    //displaying output 
+    printf("\nStudent Details:\n");
+    printf("Name: %s",ptr->name);
+    printf("Roll number: %d",ptr->roll);
+    printf("Address: %s",ptr->address);
+}
     return 0;
 }
